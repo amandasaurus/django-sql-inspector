@@ -192,6 +192,7 @@ class MeasureSQLCommand(BaseCommand):
             print "(no sql queries logged)"
             return
 
+        print "\nAggregate statistics:"
         num_to_show = 20
 
         print "\nTop %d files:" % num_to_show
