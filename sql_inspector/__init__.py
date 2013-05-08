@@ -187,7 +187,13 @@ class MeasureSQLCommand(BaseCommand):
         self.print_stats()
 
     def print_stats(self):
+
+        if len(self.log_counter.filehits) == 0 and len(self.log_counter.queries) == 0:
+            print "(no sql queries logged)"
+            return
+
         num_to_show = 20
+
         print "\nTop %d files:" % num_to_show
         print "\n".join("{0:>5} {1}".format(num, string) for num, string in most_common([x['filename'] for x in self.log_counter.filehits], num_to_show))
         print "\nTop %d lines:" % num_to_show
