@@ -9,13 +9,11 @@ used).
 It currently only works with MySQL.
 
 
-Installation
-============
+# Installation
 
     pip install django-sql-inspector
 
-Usage
-=====
+# Usage
 
 Create a [custom django mangement command](https://docs.djangoproject.com/en/dev/howto/custom-management-commands/) in the usual way. I like to create a command ``measure_sql_performance.py``.
 
@@ -31,8 +29,7 @@ A simple example might look like this:
             self.client.get("/")
             self.client.get("/polls/")
 
-Interpretating the output
-=========================
+# Interpretating the output
 
 If you run this management command against the django example polls app (you can find a copy of the code [here](https://github.com/shimon/djangotutorial)), you'll get this output:
 
@@ -87,13 +84,11 @@ If you run this management command against the django example polls app (you can
     0.000270128250122s seconds spend in mysql
 
 
-Explaination
-------------
+## Explaination
 
 It prints out details for each SQL query that is executed and then a summary of queries and files.
 
-For each SQL query
-~~~~~~~~~~~~~~~~~~
+### For each SQL query
 
 This is what is printed out for one SQL query:
 
@@ -116,8 +111,7 @@ Number of, and what tables were used in this query. Catch over eager table joins
 
 The SQL itself, as a prepared query. The ``()`` at the end tells us there was no parameters.
 
-Summary statistics
-~~~~~~~~~~~~~~~~~~
+### Summary statistics
 
     Aggregate statistics:
 
@@ -197,16 +191,13 @@ Total amount of time spent doing SQL queries
 
 
 
-Comparison with other tools
-===========================
+# Comparison with other tools
+
+## Django Debug Toolbar
 
 Django Debug Toolbar
---------------------
-
-Django Debug Toolbar
 
 
-Copyright & Licence
-===================
+# Copyright & Licence
 
 Copyright 2013, Rory McCann <rory@technomancy.org>. Released under GNU General Public Licence, version 3, or (at your option) any later version. See the file LICENCE for the GNU GPLv3+
