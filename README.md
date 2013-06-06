@@ -10,7 +10,7 @@ It currently only works with MySQL.
 
 # Motivation and design philosophy
 
-I created this library when needing to measure and optimize an existing Django application
+I created this library when needing to measure and optimize an existing Django application. It was a large application, and I wanted to optimize a particular popular 'flow'. There were many layers, function 1 called function 2 called function 3 which did an SQL query. I wanted to be able to see what functions were responsible for what SQL. I wanted to be able to measure, in a reproducible way, the amount of SQL being called, so I could reduce it and measure the improvements.
 
 # Installation
 
