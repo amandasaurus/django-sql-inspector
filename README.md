@@ -8,6 +8,9 @@ used).
 
 It currently only works with MySQL.
 
+# Motivation and design philosophy
+
+I created this library when needing to measure and optimize an existing Django application
 
 # Installation
 
@@ -19,6 +22,10 @@ Create a [custom django mangement command](https://docs.djangoproject.com/en/dev
 
 However, rather than subclassing ``django.core.management.base.BaseCommand``, you must subclass ``sql_inspector.MeasureSQLCommand``, and rather than using ``handle`` as the entry point, you must use ``inner_handle``.
 
+An instance of [Django's Test Client](https://docs.djangoproject.com/en/dev/topics/testing/overview/#module-django.test.client) (i.e. simple web browser) will be created and is available as ``self.client``.
+
+## Example
+
 A simple example might look like this:
 
     from sql_inspector import MeasureSQLCommand
@@ -29,9 +36,11 @@ A simple example might look like this:
             self.client.get("/")
             self.client.get("/polls/")
 
-# Interpretating the output
+This just goes to ``/`` and then ``/polls/``. Since this is full python, you can parse the HTML, follow links, submit forms, etc. to accurately simulate what a user would do.
 
-If you run this management command against the django example polls app (you can find a copy of the code [here](https://github.com/shimon/djangotutorial)), you'll get this output:
+# Output
+
+If you run this management command against the django example polls app (you can find a copy of the code [here](https://github.com/shimon/djangotutorial), you'll have to change the database from sqlite3 to mysql), you'll get this output:
 
 
                              index @ /tmp/djangoexample/mysite/polls/views.py:L13    (function starts at L10   )
@@ -84,7 +93,7 @@ If you run this management command against the django example polls app (you can
     0.000270128250122s seconds spend in mysql
 
 
-## Explaination
+## Output Explaination
 
 It prints out details for each SQL query that is executed and then a summary of queries and files.
 
@@ -189,15 +198,13 @@ Total amount of time spent doing SQL queries
 
 
 
-
-
 # Comparison with other tools
 
 ## Django Debug Toolbar
 
-Django Debug Toolbar
+[Django Debug Toolbar](https://github.com/django-debug-toolbar/django-debug-toolbar) is a great tool that can also measure what SQL is used and show output on what tables/indexes are used. However it works on a per-page basis, not per-'user flow', it displays results in the web browser, so you can't analyse it in a file, it will not group queries based on file or functions.
 
 
 # Copyright & Licence
 
-Copyright 2013, Rory McCann <rory@technomancy.org>. Released under GNU General Public Licence, version 3, or (at your option) any later version. See the file LICENCE for the GNU GPLv3+
+Copyright 2013, Rory McCann <rory@technomancy.org>. Released under GNU General Public Licence, version 3, or (at your option) any later version. See the file LICENCE for the actual GNU GPLv3+ licence.
