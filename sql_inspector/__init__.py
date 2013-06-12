@@ -73,6 +73,11 @@ class CountLogMessages(logging.Handler):
                 ('Impossible WHERE noticed after reading const tables',
                  'Impossible WHERE',
                  'Select tables optimized away' ) ]
+            # Remove UNION rows aswell cause they have no data
+            results_with_rows = [x for x in results_with_rows if not (x[8] is None and x[1] in
+                ('UNION RESULT',) ) ]
+            
+            # If this assert fails, either there's a bug, or it's not excluding useless rows that it should.
             assert all(x[8] is not None for x in results_with_rows), repr(results_with_rows)
             sql_num_rows = sum(row[8] for row in results_with_rows)
         finally:
