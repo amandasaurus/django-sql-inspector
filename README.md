@@ -208,3 +208,7 @@ Total amount of time spent doing SQL queries
 # Copyright & Licence
 
 Copyright 2013, Rory McCann <rory@technomancy.org>. Released under GNU General Public Licence, version 3, or (at your option) any later version. See the file LICENCE for the actual GNU GPLv3+ licence.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/rory/django-sql-inspector/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
