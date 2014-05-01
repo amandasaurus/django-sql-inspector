@@ -112,7 +112,7 @@ class CountLogMessages(logging.Handler):
 
         print "Query used {sql_num_tables:>5} tables in {sql_duration:8.2f} sec and needed to look at {sql_num_rows:>5} rows".format(sql_duration=sql_duration, sql_num_rows=sql_num_rows, sql_num_tables=sql_num_tables)
         print "Query used {sql_num_tables:>5} tables: {tables}".format(sql_num_tables=sql_num_tables, tables=", ".join(sql_tables))
-        print raw_sql, sql_params
+        print raw_sql
 
         self.queries.append({
             'raw_sql': raw_sql, 'params': sql_params, 'duration': sql_duration, 'num_tables': sql_num_tables, 'num_rows': sql_num_rows,
