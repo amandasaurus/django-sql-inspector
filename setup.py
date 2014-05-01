@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 
 setup(name="django-sql-inspector",
-      version="1.0.0",
+      version="1.0.1",
       author="Rory McCann",
       author_email="rory@technomancy.org",
       packages=['sql_inspector'],
