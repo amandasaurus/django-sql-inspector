@@ -47,7 +47,7 @@ If you run this management command against the django example polls app (you can
                       inner_handle @ /tmp/djangoexample/mysite/polls/management/commands/measure_sql_performance.py:L7     (function starts at L5    )
     Query used     1 tables in     0.00 sec and needed to look at     1 rows
     Query used     1 tables: polls_poll
-    SELECT `polls_poll`.`id`, `polls_poll`.`question`, `polls_poll`.`pub_date` FROM `polls_poll` ORDER BY `polls_poll`.`pub_date` DESC LIMIT 5 ()
+    SELECT `polls_poll`.`id`, `polls_poll`.`question`, `polls_poll`.`pub_date` FROM `polls_poll` ORDER BY `polls_poll`.`pub_date` DESC LIMIT 5
 
     Aggregate statistics:
 
@@ -116,9 +116,9 @@ Summary of query, how many tables were joined, how long the query took to execut
 
 Number of, and what tables were used in this query. Catch over eager table joins here
 
-    SELECT `polls_poll`.`id`, `polls_poll`.`question`, `polls_poll`.`pub_date` FROM `polls_poll` ORDER BY `polls_poll`.`pub_date` DESC LIMIT 5 ()
+    SELECT `polls_poll`.`id`, `polls_poll`.`question`, `polls_poll`.`pub_date` FROM `polls_poll` ORDER BY `polls_poll`.`pub_date` DESC LIMIT 5
 
-The SQL itself, as a prepared query. The ``()`` at the end tells us there was no parameters.
+The SQL itself, as a prepared query.
 
 ### Summary statistics
 
