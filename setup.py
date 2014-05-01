@@ -10,5 +10,5 @@ setup(name="django-sql-inspector",
       packages=['sql_inspector'],
       license = 'GPLv3',
       description = 'Analyze and measure the SQL calls, used by your Django application',
-      requires=[ 'django>=1.4' ],
+      install_requires=[ 'django>=1.4' ],
 )
