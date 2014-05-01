@@ -30,20 +30,14 @@ class CountLogMessages(logging.Handler):
         sql_params = record.params
         sql_tables = []
 
-        # Dodgy hack since django doesn't return the *real* SQL, but rather it's parsed version
-        # Go up the stack 7 places to where the cursor.execute(sql, params)
-        # call is made and copy the sql there
-        # this has been fixed in Django 1.4+, the SQL is the real SQL you can run
-        frame_for_sql_call = inspect.stack()[7][0]
-        raw_sql = frame_for_sql_call.f_locals['sql']
-        del frame_for_sql_call      # prevent memory leak problems. (yes this can happen in python)
+        raw_sql = record.sql
 
         # Turn off SQL logging, otherwise this will cause an infinite loop by
         # calling this function again when it logs the 'explain' query
         settings.DEBUG = False
         cursor = connection.cursor()
         try:
-            cursor.execute("EXPLAIN "+raw_sql, sql_params)
+            cursor.execute("EXPLAIN "+raw_sql)
         except Exception as ex:
             if sql_stmt_type != 'SELECT':
                 # If this is pre-mysql 5.6, EXPLAIN can only do SELECT, 5.6+ it
